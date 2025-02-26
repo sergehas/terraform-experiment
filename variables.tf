@@ -25,7 +25,7 @@ variable "app_name" {
 variable "paths" {
   type        = map(string)
   description = "A map of paths"
-  default     = {
+  default = {
     build = "build"
     src   = "src"
   }

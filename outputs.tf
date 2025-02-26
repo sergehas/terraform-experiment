@@ -1,4 +1,4 @@
 output "sample_output" {
  description = "sample output"
-  value = var.sample_number
+  value = local.ws_var.sample_number
 }

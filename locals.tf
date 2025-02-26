@@ -4,8 +4,9 @@ locals {
 
   default_tags = {
     ApplicationName = var.app_name
+    ApplicationSize = local.ws_var.app_size
     Environment     = local.ws_var.env_name
-    workspace       = terraform.workspace
-    terraform       = true
+    Workspace       = terraform.workspace
+    Terraform       = true
   }
 }

@@ -35,10 +35,20 @@ terraform workspace new staging
 
 ## Demo
 
+### Where the *magic* (aka : automation) happens
+
 ```shell
 terraform workspace select dev
 #terraform apply -var-file="dev-env.tfvars" # the error prone way
 terraform plan # "magic": no need to tell what .tfvars file to load!
 terraform workspace select staging
 terraform plan # "magic" again
+```
+
+### Reset all
+
+Remove all the local files created by terraform (listed in `.gitignore`)
+
+```shell
+git clean -xdf
 ```

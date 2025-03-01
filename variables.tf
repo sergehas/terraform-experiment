@@ -29,4 +29,4 @@ variable "paths" {
     build = "build"
     src   = "src"
   }
-}   
+}

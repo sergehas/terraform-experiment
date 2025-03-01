@@ -12,4 +12,3 @@ output "ws_variables" {
   description = "All workspace variables"
   value       = local.ws_var
 }
-

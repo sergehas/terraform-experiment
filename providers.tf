@@ -1,7 +1,4 @@
 # Purpose: Define the providers to be used in the Terraform configuration.
 
-provider "local" {
-  # default_tags {
-  #   tags = local.default_tags
-  # }
-}
+# no specific provider is used in this configuration
+# module specific provider are declared in the module block

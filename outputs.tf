@@ -12,3 +12,9 @@ output "ws_variables" {
   description = "All workspace variables"
   value       = local.ws_var
 }
+
+output "documentation_file" {
+  description = "generated documentation file"
+  value       = module.documentation.documentation_filename
+
+}

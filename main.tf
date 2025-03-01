@@ -1,14 +1,10 @@
 # main module : create resources
 
-resource "local_file" "sample_file" {
-  content  = <<EOT
-# Where am I?
+module "documentation" {
+  source = "./modules/documentation"
 
-I'm the content for **${local.ws_var.env_name}** environment!
-
-## Features
-%{for f in local.ws_var.features}
-* ${f}%{endfor}
-EOT
-  filename = "${var.paths.build}/sample-${local.ws_var.env_name}-${local.ws_var.app_size}.md"
+  env_name = local.ws_var.env_name
+  app_size = local.ws_var.app_size
+  features = local.ws_var.features
+  paths    = var.paths
 }

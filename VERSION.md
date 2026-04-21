@@ -8,5 +8,16 @@ attempt to manage sem-versioning with terraform only
 * define a module which
   * is "called" from `main.tf` (actually, `trigger.tf`), but ...
   * is not ran by default (`count=0`)
-  * when enabled, compute the next version (bump major/minor/patch + meta) & generate a file (containing the `local` declaration) to store the version
-* enable this module from the CLI with `tf plan -target="module.version" -var "do_version=true"`
+  * computes the next version (bump major/minor/patch + optional prerelease)
+* when enabled, the root module writes `version.tf` with the newly computed version
+
+## CLI usage
+
+```shell
+terraform plan \
+  -target="local_file.version_file" \
+  -var "do_version=true" \
+  -var "current_version=1.2.3" \
+  -var "version_bump_part=minor" \
+  -var "version_prerelease=SNAPSHOT"
+```

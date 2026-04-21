@@ -1,11 +1,10 @@
-# main module : create resources
+locals {
+  version_parts = [for p in split(".", var.actual_version) : tonumber(p)]
 
-resource "local_file" "version_file" {
-  content = <<EOT
-local {
-  version = "${var.actual_version}"
-}
-EOT
+  new_major = var.bump_part == "major" ? local.version_parts[0] + 1 : local.version_parts[0]
+  new_minor = var.bump_part == "major" ? 0 : (var.bump_part == "minor" ? local.version_parts[1] + 1 : local.version_parts[1])
+  new_patch = var.bump_part == "patch" ? local.version_parts[2] + 1 : 0
 
-  filename = "${path.root}/version.tf"
+  base_new_version = "${local.new_major}.${local.new_minor}.${local.new_patch}"
+  new_version      = var.prerelease != "" ? "${local.base_new_version}-${var.prerelease}" : local.base_new_version
 }

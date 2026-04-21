@@ -1,5 +1,5 @@
 output "documentation_filename" {
-  description = "The filename of the generated documentation"
+  description = "Filename of the generated documentation file"
   value       = local_file.documentation_file.filename
 }
 

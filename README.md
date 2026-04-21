@@ -12,8 +12,10 @@ load workspace specific variables automatically (i.e. without taking the risk to
 ## Principle
 
 * Dynamically load a file corresponding the current workspace
+  * workspace must be explicitly selected (default workspace is not allowed)
+  * workspace-specific `.tfvars` file must exist and contain all required variables
 * workspace specific vars are `local`
-  * no mixing with internal / module specific `variable`s. Variables defined this way (via `${env}.tfvars`) must  **not* (nor can) be defined as `variable`
+  * no mixing with internal / module specific `variable`s. Variables defined this way (via `${env}.tfvars`) must  **not** (nor can) be defined as `variable`
   * it is not possible to add validation rules to these variables
   * works also with `terraform output` (which doesn't support `-var-file` option)
 
@@ -43,6 +45,23 @@ terraform workspace select dev
 terraform plan # "magic": no need to tell what .tfvars file to load!
 terraform workspace select staging
 terraform plan # "magic" again
+```
+
+## Running tests
+
+Tests must run from a non-default workspace because the `default` workspace is intentionally rejected.
+
+```shell
+terraform workspace select dev
+terraform test
+```
+
+If the workspace does not exist yet:
+
+```shell
+terraform workspace new dev
+terraform workspace select dev
+terraform test
 ```
 
 ### Reset all

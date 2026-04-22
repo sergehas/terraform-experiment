@@ -1,0 +1,68 @@
+formatter: "markdown table"
+
+#version: ""
+
+recursive:
+  enabled: true
+  path: ./modules
+
+# sections:
+#   hide: []
+#   show: []
+#header-from: .config/header.tf
+#footer-from: ""
+
+content: |-
+  # Usage
+
+  {{ .Header }}
+
+  {{ .Requirements }}
+
+  {{ .Providers }}
+
+  ## Module dependencies
+
+  | Name | Source | Version |
+  |------|--------|---------|{{ range .Module.ModuleCalls   }}
+  | [`{{ .Name }}`]({{.Source}}/USAGE.md) | {{.Source}} | {{.Version}} | 
+  {{- end }}  
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
+
+  {{ .Resources }}
+
+  {{ .Footer }}
+  
+output:
+  file: "USAGE.md"
+  mode: replace
+  # template: |-
+  #   <!-- BEGIN_TF_DOCS -->
+  #   {{ .Content }}
+  #   <!-- END_TF_DOCS -->
+
+# output-values:
+#   enabled: false
+#   from: ""
+
+sort:
+  enabled: false
+#   by: name
+
+settings:
+  anchor: false
+  # color: true
+  # default: true
+  # description: false
+  # escape: true
+  # hide-empty: false
+  html: false
+  indent: 2
+  # lockfile: true
+  # read-comments: true
+  required: true
+  sensitive: true
+  type: true

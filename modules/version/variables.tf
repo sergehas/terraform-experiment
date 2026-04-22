@@ -1,3 +1,4 @@
+# Declares validated semantic-version inputs for the version module.
 variable "actual_version" {
   description = "Version string written into the generated version file"
   type        = string

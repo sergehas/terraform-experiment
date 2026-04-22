@@ -1,4 +1,4 @@
-# Configuration using provider functions must include required_providers configuration.
+# Defines provider requirements for the documentation module.
 terraform {
   required_providers {
     local = {

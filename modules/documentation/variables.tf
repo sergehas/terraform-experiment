@@ -1,3 +1,4 @@
+# Declares inputs consumed by the documentation generation module.
 variable "env_name" {
   description = "The name of the environment"
   type        = string

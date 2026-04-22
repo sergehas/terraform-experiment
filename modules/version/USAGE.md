@@ -4,9 +4,9 @@
 
 ## Requirements
 
-| Name      | Version  |
-| --------- | -------- |
-| terraform | >= 1.8.0 |
+| Name      | Version   |
+| --------- | --------- |
+| terraform | >= 1.10.0 |
 
 ## Providers
 

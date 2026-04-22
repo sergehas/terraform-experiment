@@ -4,10 +4,10 @@
 
 ## Requirements
 
-| Name      | Version  |
-| --------- | -------- |
-| terraform | >= 1.8.0 |
-| local     | ~> 2.5   |
+| Name      | Version   |
+| --------- | --------- |
+| terraform | >= 1.10.0 |
+| local     | ~> 2.5    |
 
 ## Providers
 

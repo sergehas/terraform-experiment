@@ -19,10 +19,9 @@
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file"
   },
-  "editor.rulers": [
-    100
-  ],
+  "editor.rulers": [100],
   "git.inputValidation": true,
   "git.inputValidationSubjectLength": 100,
-  "git.inputValidationLength": 100
+  "git.inputValidationLength": 100,
+  "cSpell.words": ["tflint", "trimspace"]
 }

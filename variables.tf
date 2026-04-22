@@ -1,3 +1,4 @@
+# Declares root module inputs used by documentation and version workflows.
 variable "app_name" {
   type        = string
   description = "The name of the application"

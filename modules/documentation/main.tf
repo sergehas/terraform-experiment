@@ -1,6 +1,6 @@
-# main module : create resources
-
+# Generates environment-specific markdown documentation artifacts.
 resource "local_file" "documentation_file" {
+  # The template renders one bullet per feature from var.features.
   content  = <<EOT
 # Where am I?
 

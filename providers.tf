@@ -1,4 +1,2 @@
-# Purpose: Define the providers to be used in the Terraform configuration.
-
-# no specific provider is used in this configuration
-# module specific provider are declared in the module block
+# Declares provider usage expectations for the root module.
+# No explicit provider blocks are required here; modules declare what they need.

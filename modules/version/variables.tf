@@ -3,8 +3,8 @@ variable "actual_version" {
   type        = string
 
   validation {
-    condition     = can(regex("^[0-9]+\\.[0-9]+\\.[0-9]+$", var.actual_version))
-    error_message = "actual_version must match MAJOR.MINOR.PATCH (for example, 1.2.3)."
+    condition     = can(regex("^[0-9]+\\.[0-9]+\\.[0-9]+(-\\w+)?$", var.actual_version))
+    error_message = "actual_version must match MAJOR.MINOR.PATCH (for example, 1.2.3) or MAJOR.MINOR.PATCH-SUFFIX (for example, 1.2.3-SNAPSHOT)."
   }
 }
 

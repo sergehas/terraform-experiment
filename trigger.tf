@@ -1,5 +1,5 @@
 variable "do_version" {
-  description = "Enable version module"
+  description = "Enable generation of the package version file"
   type        = bool
   default     = false
 }
@@ -27,22 +27,23 @@ variable "version_prerelease" {
   default     = "SNAPSHOT"
 }
 
+variable "version_package_file" {
+  description = "Path to package HCL file used as version input when do_version is true"
+  type        = string
+  default     = "package.hcl"
+}
+
 module "version" {
   count          = var.do_version ? 1 : 0
   source         = "./modules/version"
-  actual_version = var.current_version
+  actual_version = local.resolved_current_version
   bump_part      = var.version_bump_part
   prerelease     = var.version_prerelease
 }
 
-resource "local_file" "version_file" {
+resource "local_file" "package_file" {
   count = var.do_version ? 1 : 0
 
-  content = <<EOT
-local {
-  version = "${module.version[0].new_version}"
-}
-EOT
-
-  filename = "${path.root}/version.tf"
+  content  = module.version[0].package_file_content
+  filename = "${path.root}/${module.version[0].package_file_name}"
 }

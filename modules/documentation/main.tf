@@ -1,5 +1,3 @@
-# main module : create resources
-
 resource "local_file" "documentation_file" {
   content  = <<EOT
 # Where am I?

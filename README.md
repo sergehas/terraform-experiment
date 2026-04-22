@@ -29,11 +29,19 @@ inspired by this [GitHub terraform discussion](https://github.com/hashicorp/terr
 
 ## Starting up
 
-```shell
-terraform init
-terraform workspace new dev
-terraform workspace new staging
-```
+* `shell`
+
+  ```shell
+  terraform init
+  terraform workspace new dev
+  terraform workspace new staging
+  ```
+
+* `docker`
+
+  ```shell
+  docker run --rm -v $(pwd):/workspace -w /workspace hashicorp/terraform init
+  ```
 
 ## Demo
 
@@ -64,6 +72,16 @@ terraform workspace select dev
 terraform test
 ```
 
+## Version package generation
+
+The version flow renders an HCL file named `package.hcl` at repository root with content like:
+
+```hcl
+version = "1.1.0-SNAPSHOT"
+```
+
+The file is loaded only when `do_version=true` via `provider::terraform::decode_tfvars(file("package.hcl"))`. This keeps the version artifact commit-friendly for CI/CD while avoiding unconditional auto-loading and feedback loops tied to root `*.tf` files.
+
 ### Reset all
 
 Remove all the local files created by terraform (listed in `.gitignore`)
@@ -71,3 +89,19 @@ Remove all the local files created by terraform (listed in `.gitignore`)
 ```shell
 git clean -xdf
 ```
+
+## Documentation
+
+To generate documentation, use
+
+* `docker`
+
+  ```shell
+  docker run --rm --volume "$(pwd):/src" -u $(id -u) quay.io/terraform-docs/terraform-docs:latest -c /src/.config/.terraform.docs.yml /src
+  ```
+
+* `shell`
+
+  ```shell
+  terraform-docs .
+  ```

@@ -1,4 +1,13 @@
 locals {
+  version_package_file = abspath(var.version_package_file)
+
+  # Load the committed package file only when versioning is explicitly enabled.
+  version_package_data = (
+    var.do_version && fileexists(local.version_package_file)
+  ) ? provider::terraform::decode_tfvars(file(local.version_package_file)) : {}
+
+  resolved_current_version = try(local.version_package_data.version, var.current_version)
+
   # All workspace specific variables that are loaded based on the active workspace.
   ws_var_file = "envs/${terraform.workspace}.tfvars"
 

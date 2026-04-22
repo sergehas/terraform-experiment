@@ -17,6 +17,16 @@ run "test_bump_patch_version" {
     condition     = output.new_version == "1.0.1"
     error_message = "patch bump should increment patch and clear prerelease"
   }
+
+  assert {
+    condition     = output.package_file_name == "package.hcl"
+    error_message = "version module should render package.hcl by default"
+  }
+
+  assert {
+    condition     = trimspace(output.package_file_content) == "version = \"1.0.1\""
+    error_message = "version module should render an HCL assignment compatible with decode_tfvars"
+  }
 }
 
 run "test_bump_minor_version" {

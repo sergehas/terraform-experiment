@@ -1,4 +1,4 @@
-# main module : create resources
+# Instantiates root-level modules for this stack.
 
 module "documentation" {
   source = "./modules/documentation"

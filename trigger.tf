@@ -1,3 +1,4 @@
+# Controls optional semantic version generation and package file emission.
 variable "do_version" {
   description = "Enable generation of the package version file"
   type        = bool
@@ -34,6 +35,7 @@ variable "version_package_file" {
 }
 
 module "version" {
+  # Only run version calculations when explicitly enabled.
   count          = var.do_version ? 1 : 0
   source         = "./modules/version"
   actual_version = local.resolved_current_version
@@ -42,6 +44,7 @@ module "version" {
 }
 
 resource "local_file" "package_file" {
+  # Emit package.hcl only when versioning is enabled to avoid side effects.
   count = var.do_version ? 1 : 0
 
   content  = module.version[0].package_file_content

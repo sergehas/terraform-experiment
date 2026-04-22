@@ -1,4 +1,4 @@
-# backend for the state file storage
+# Configures local backend state storage.
 terraform {
   backend "local" {
     path = ".terraform/terraform.tfstate"

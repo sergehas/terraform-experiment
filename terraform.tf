@@ -1,5 +1,6 @@
-# Configuration using provider functions must include required_providers configuration.
+# Defines Terraform core and provider version requirements.
 terraform {
+  # Provider functions require explicit required_providers declarations.
   required_providers {
 
     local = {

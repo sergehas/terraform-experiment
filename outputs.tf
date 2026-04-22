@@ -1,3 +1,4 @@
+# Exposes root outputs for generated artifacts and resolved workspace context.
 output "documentation_file" {
   description = "Generated documentation filename"
   value       = module.documentation.documentation_filename

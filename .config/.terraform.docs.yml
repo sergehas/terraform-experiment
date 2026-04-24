@@ -11,10 +11,9 @@ recursive:
 #   show: []
 #header-from: .config/header.tf
 #footer-from: ""
+header-from: README.md
 
 content: |-
-  # Usage
-
   {{ .Header }}
 
   {{ .Requirements }}
